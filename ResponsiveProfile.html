@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 640 -->
+    <style>
+        html{
+            background-color: lightgrey;
+        }
+        body{
+            display: flex;
+            height: 80vh;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            border: 2px transparent ;
+            display:flex;
+            width: 500px;
+            height: 280px;
+            border-radius: 10px;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        .img img{
+            width: 150px;
+            height: 150px;
+            border-radius: 10%;
+        }
+        .details{
+            font-size: 18px;
+            margin: 20px;
+        }
+        button{
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 12%;
+            background-color:rgb(11, 85, 176);
+            color: white;
+        }
+        button:hover{ 
+            background-color: rgb(93, 139, 193);
+            color: black;
+        }
+        @media (max-width: 640px){
+            .container{
+                flex-direction: column;
+                width: 90%;
+                height: auto;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div class="img">
+            <img src="image.jpg" alt="Avatar" >
+            <h2>Sujal Gopinwar</h2>
+        </div>
+        <div class="details">
+            <p>Web Designer & JavaScript Enthusiast.Loves clean, creative layouts and good coffee!</p>
+        
+            
+                <button>Contact</button>
+                <button>Portfolio</button>
+            </div>
+    </div>
+        
+</body>
+</html>
