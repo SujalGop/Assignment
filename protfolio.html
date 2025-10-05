@@ -33,11 +33,9 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
-        }
-
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            position: sticky;
+            top: 0;
+            background-color: #111827;
         }
 
         header nav a {
@@ -192,6 +190,25 @@
             color: #9CA3AF ;
         }
 
+        #contact .contact-links {
+            background-color:#4F46E5;
+            color: white;
+            transform: background-color 0.3s ease;
+            display: inline-block;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #contact .contact-links:hover {
+            background-color: #3730A3;
+            color: #9CA3AF ;
+            transform: translateY(-3px);
+
+        }
+
          /* Footer Styles */
         
         footer {
@@ -314,8 +331,10 @@
 
             <div id="contact" style="text-align: center; margin-top: 40px;">
                 <h2 class="section-title">Contact Me</h2>
-                <p>If you'd like to get in touch, feel free to reach out via email :  <a href="mailto:sujalgopinwar07@gmail.com" style="color: #4F46E5;"> Click Here</a></p>
-
+                <p>If you'd like to get in touch, feel free to reach out : </p>
+            <a href="mailto:sujalgopinwar07@gmail.com " class="contact-links">Email</a>
+            <a href="https://github.com/SujalGop" class="contact-links">GitHub</a>
+            <a href="https://www.linkedin.com/in/sujal-gopinwar-76589437b/" class="contact-links">LinkedIn</a>
             </div>
         </section>
 
