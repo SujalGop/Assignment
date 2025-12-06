@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Notification Clicker — Simple</title>
+<style>
+  :root{font-family:system-ui,Segoe UI,Roboto,Arial; color:#111}
+  body{display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f6f8fb}
+  .box{background:white;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.08);width:360px}
+  h1{font-size:18px;margin:0 0 12px}
+  p{margin:0 0 12px;color:#555;font-size:14px}
+  .row{display:flex;gap:8px}
+  button{padding:10px 12px;border-radius:8px;border:1px solid #dde6f0;background:#fff;cursor:pointer}
+  button.primary{background:#2563eb;color:white;border:0}
+  .status{margin-top:12px;font-size:13px;color:#444}
+  .log{margin-top:8px;font-family:monospace;font-size:13px;color:#333;max-height:80px;overflow:auto;background:#f3f6fb;padding:8px;border-radius:6px}
+</style>
+</head>
+<body>
+  <div class="box" role="region" aria-label="Simple Notification Clicker">
+    <h1>Notification Clicker </h1>
+    <p>Enable notifications, then send a test.</p>
+
+    <div class="row">
+      <button id="enable">Enable</button>
+      <button id="send" class="primary">Send</button>
+    </div>
+
+    <div class="status">
+      Permission: <strong id="perm">unknown</strong>
+      
+    </div>
+  </div>
+
+<script>
+const enableBtn = document.getElementById('enable');
+const sendBtn   = document.getElementById('send');
+const permEl    = document.getElementById('perm');
+const logEl     = document.getElementById('log');
+
+function log(msg){
+  const t = new Date().toLocaleTimeString();
+  logEl.textContent = `[${t}] ${msg}\n` + logEl.textContent;
+}
+
+function updatePerm(){
+  permEl.textContent = Notification ? Notification.permission : 'unsupported';
+}
+updatePerm();
+
+enableBtn.addEventListener('click', async () => {
+  if (!('Notification' in window)) { log('Notifications unsupported'); return; }
+  try {
+    const res = await Notification.requestPermission();
+    updatePerm();
+    log('Permission: ' + res);
+    if (res === 'granted') {
+      new Notification('Welcome!', { body: 'Notifications enabled.' });
+      log('Welcome notification shown.');
+    }
+  } catch (e) {
+    log('Permission error: ' + e);
+  }
+});
+
+sendBtn.addEventListener('click', () => {
+  if (!('Notification' in window)) { log('Notifications unsupported'); return; }
+  if (Notification.permission !== 'granted') { log('Permission not granted'); return; }
+
+  const n = new Notification('👋 Hello!', { body: 'This is a test.' });
+  n.onclick = () => { window.focus(); n.close(); log('Notification clicked'); };
+  n.onclose = () => log('Notification closed');
+  log('Notification sent');
+});
+</script>
+</body>
+</html>
